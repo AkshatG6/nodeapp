@@ -25,11 +25,10 @@ node {
         /* 
 			You would need to first register with DockerHub before you can push images to your account
 		*/
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+        docker.withRegistry('https://registry.hub.docker.com', '7c536c0d-ec79-48a8-af9a-e073457dd575') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
-	    env.GIT_COMMIT = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
-	    echo env.GIT_COMMIT
+	    
             } 
                 echo "Trying to Push Docker Build to DockerHub"
 	    	
