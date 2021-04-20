@@ -5,6 +5,7 @@ node {
         /* Cloning the Repository to our Workspace */
 
         checkout scm
+	    
     }
 
     stage('Build image') {
@@ -29,5 +30,7 @@ node {
             app.push("latest")
             } 
                 echo "Trying to Push Docker Build to DockerHub"
+	    	env.GIT_COMMIT = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
+		echo env.GIT_COMMIT
     }
 }
