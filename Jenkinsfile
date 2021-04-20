@@ -28,9 +28,10 @@ node {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
+	    env.GIT_COMMIT = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
+	    echo env.GIT_COMMIT
             } 
                 echo "Trying to Push Docker Build to DockerHub"
-	    	env.GIT_COMMIT = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
-		echo env.GIT_COMMIT
+	    	
     }
 }
