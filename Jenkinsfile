@@ -5,7 +5,6 @@ node {
         /* Cloning the Repository to our Workspace */
 
         checkout scm
-	    
     }
 
     stage('Build image') {
@@ -28,9 +27,7 @@ node {
         docker.withRegistry('https://registry.hub.docker.com', '7c536c0d-ec79-48a8-af9a-e073457dd575') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
-	    
             } 
                 echo "Trying to Push Docker Build to DockerHub"
-	    	
     }
 }
